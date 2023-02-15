@@ -30,7 +30,12 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	host, _ := os.Hostname()
 	fmt.Fprintf(w, "Hello, world!\n")
 	fmt.Fprintf(w, "Version: 1.0\n")
-	fmt.Fprintf(w, "Hostname: %s\n", host)
-	fmt.Fprintf(w, "I also have a shell inside, attach to /bin/sh \n")
+	fmt.Fprintf(w, "Hostname: %s\n\n", host)
+	for name, headers := range r.Header {
+        for _, h := range headers {
+            fmt.Fprintf(w, "%v: %v\n", name, h)
+        }
+    }
+	fmt.Fprintf(w, "\nI also have a shell inside on /bin/sh \n")
 }
 
