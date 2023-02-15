@@ -29,7 +29,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Serving request: %s", r.URL.Path)
 	host, _ := os.Hostname()
 	fmt.Fprintf(w, "Hello, world!\n")
-	fmt.Fprintf(w, "Version: 1.0.0\n")
+	fmt.Fprintf(w, "Version: 1.0\n")
 	fmt.Fprintf(w, "Hostname: %s\n", host)
 	fmt.Fprintf(w, "I also have a shell inside, attach to /bin/sh \n")
 }
