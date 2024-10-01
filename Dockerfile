@@ -1,10 +1,10 @@
-FROM golang:1.20.4-alpine3.17 as builder
+FROM golang:1.23.1-alpine3.20 as builder
 WORKDIR /app
 RUN go mod init hello-app
 COPY *.go ./
 RUN CGO_ENABLED=0 GOOS=linux go build -o /hello-app
 
-FROM alpine:3.17.3
+FROM alpine3.20.3
 WORKDIR /
 COPY --from=builder /hello-app /hello-app
 ENV PORT 8080
