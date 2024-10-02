@@ -1,8 +1,10 @@
 # Information
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/perteghella/hello-shell.svg)](https://hub.docker.com/r/perteghella/hello-shell)
+
 Sample "Hello world" web server written in GO and shell packed as image using [Alpine linux](https://www.alpinelinux.org/) as base image.  
 
-The images are hosted on Docker Hub [https://hub.docker.com/repository/docker/perteghella/hello-shell/](https://hub.docker.com/repository/docker/perteghella/hello-shell/)   
+The images are hosted on Docker Hub [https://hub.docker.com/r/perteghella/hello-shell](https://hub.docker.com/r/perteghella/hello-shell)   
 Source code on Github [https://github.com/Perteghella/hello-shell](https://github.com/Perteghella/hello-shell)  
 
 There are also images based on Ubuntu, Debian, Google Distroless, Busybox and Scratch to understand that [size matters](#build-using-different-base-image)
