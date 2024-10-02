@@ -9,6 +9,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /hello-app
 FROM alpine:3.20.3
 WORKDIR /
 COPY --from=builder /hello-app /hello-app
-ENV PORT 8080
-ENV APP_VERSION ${APP_VERSION}
+ENV PORT=8080
+ARG APP_VERSION=1.0
+ENV APP_VERSION=${APP_VERSION}
 CMD ["/hello-app"]
