@@ -9,10 +9,16 @@ ARG APP_VERSION=1.0
 ENV APP_VERSION=${APP_VERSION}
 RUN CGO_ENABLED=0 GOOS=linux go build -o /hello-app
 
-# Second stage to run the application in a specific image
-FROM alpine:3.20.3
+# Second stage to define a source for shell
+FROM busybox:1.37.0 AS busybox
+
+# Third stage to run the application in an empty image
+FROM scratch
 WORKDIR /
 COPY --from=builder /hello-app /hello-app
+COPY --from=busybox /bin/sh /bin/sh
+COPY --from=busybox /bin/busybox /bin/busybox
+ENV PATH=/bin
 ENV PORT=8080
 ARG APP_VERSION=1.0
 ENV APP_VERSION=${APP_VERSION}
