@@ -10,7 +10,7 @@ There are also images based on Ubuntu, Debian, Busybox and Scratch to understand
 - debian:bookworm 12.7 [https://hub.docker.com/_/debian](https://hub.docker.com/_/debian)
 - ubuntu:24.04 [https://hub.docker.com/_/ubuntu](https://hub.docker.com/_/ubuntu)
 
-# Versions
+## Versions
 
 This application is available as [OCI images](https://opencontainers.org/) based on Alpine on [Docker Hub](https://hub.docker.com/r/perteghella/hello-shell), which respond to requests with different version numbers:
 
@@ -20,7 +20,7 @@ This application is available as [OCI images](https://opencontainers.org/) based
 The images are based on [sample hello-app](https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/hello-app)
 
 
-# Key features
+## Key features
 
 - Multi architecture build
   - linux/amd64
@@ -30,7 +30,7 @@ The images are based on [sample hello-app](https://github.com/GoogleCloudPlatfor
 - Minimal web server that expose version and headers
 - env var PORT to change the server port, default to 8080
 
-# How to use this image with Docker cli
+## How to use this image with Docker cli
 
 Download the proper tagged image `docker pull perteghella/hello-shell:TAG`
 
@@ -85,11 +85,11 @@ docker rm  -f hello-shell-1.0
 ```
 
 
-# Code
+## Code
 
 Source on Github [https://github.com/Perteghella/hello-shell](https://github.com/Perteghella/hello-shell)
 
-# Build the image
+## Build the image
 
 Build and push the images based on Alpine to Docker hub
 
@@ -98,7 +98,7 @@ docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1
 docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=2.0 --tag perteghella/hello-shell:2.0 --push .
 ```
 
-# Build using different base image
+## Build using different base image
 
 Using different Dockerfiles we build and save the image locally
 
@@ -132,7 +132,7 @@ perteghella/hello-shell       1.0-ubuntu         1c2a0f395005   7 seconds ago   
 perteghella/hello-shell       1.0-debian         d2309d0c3760   51 seconds ago       146MB
 ```
 
-#  Build and push the images based on Scratch, Busybox, Ubuntu and Debian
+##  Build and push the images based on Scratch, Busybox, Ubuntu and Debian
 
 As reference you can use also this TAGs for the image from Docker Hub, sorted by image size.
 
