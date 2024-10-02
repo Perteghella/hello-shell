@@ -2,6 +2,9 @@
 
 Sample "Hello world" web server written in GO and shell packed as image using [Alpine linux](https://www.alpinelinux.org/) as base image.  
 
+The images are hosted on Docker Hub [https://hub.docker.com/repository/docker/perteghella/hello-shell/](https://hub.docker.com/repository/docker/perteghella/hello-shell/)   
+Source code on Github [https://github.com/Perteghella/hello-shell](https://github.com/Perteghella/hello-shell)  
+
 There are also images based on Ubuntu, Debian, Google Distroless, Busybox and Scratch to understand that [size matters](#build-using-different-base-image)
 
 - golang:1.23.1 [https://hub.docker.com/_/golang](https://hub.docker.com/_/golang)
