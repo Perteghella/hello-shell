@@ -36,6 +36,6 @@ func hello(w http.ResponseWriter, r *http.Request) {
             fmt.Fprintf(w, "%v: %v\n", name, h)
         }
     }
-	fmt.Fprintf(w, "\nI also have a shell inside on /bin/sh \n")
+	fmt.Fprintf(w, "\nI also have a shell, attach using /bin/sh \n")
 }
 
