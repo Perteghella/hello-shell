@@ -2,8 +2,8 @@
 
 Sample "Hello world" containerized web server written in GO and the tools of alpine:
 
-- golang:1.20.4 [https://hub.docker.com/_/golang](https://hub.docker.com/_/golang)
-- alpine 3.17.2 [https://hub.docker.com/_/alpine](https://hub.docker.com/_/alpine)
+- golang:1.23.1 [https://hub.docker.com/_/golang](https://hub.docker.com/_/golang)
+- alpine 3.20.3 [https://hub.docker.com/_/alpine](https://hub.docker.com/_/alpine)
 
 This application is available as two OCI images on [Docker Hub](https://hub.docker.com/r/perteghella/hello-shell), which respond to requests with different version numbers:
 
@@ -19,6 +19,8 @@ The images are based on https://github.com/GoogleCloudPlatform/kubernetes-engine
   - linux/arm64
 - Minimal size due to multistage build
 - Multiple tag to test the migration to different version of deployment
+- Minimal web server that expose version and headers
+- env var PORT to change the server port, default to 8080
 
 # How to use this image with Docker cli
 
