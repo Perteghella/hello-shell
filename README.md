@@ -26,7 +26,7 @@ Download the proper tagged image `docker pull perteghella/hello-shell:TAG`
 
 Run as daemon exposing port 8080 on localhost port 8000
 
-```markdown
+```shell
 docker pull perteghella/hello-shell:1.0
 
 docker run -d -p 8000:8080 perteghella/hello-shell:1.0
@@ -34,13 +34,13 @@ docker run -d -p 8000:8080 perteghella/hello-shell:1.0
 
 Verify that the server is running and respond 
 
-```markdown
+```shell
 curl http://127.0.0.1:8000
 ```
 
 Attach to shell using 
 
-```markdown
+```shell
 docker exec -it CONTAINER-ID /bin/sh
 ```
 
@@ -50,6 +50,7 @@ Source on Github [https://github.com/Perteghella/hello-shell](https://github.com
 
 # Build the image
 
-```markdown
-docker buildx build --platform linux/amd64,linux/arm64 --tag perteghella/hello-shell:1.0 --push .
+```shell
+docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1.0 --tag perteghella/hello-shell:1.0 --push .
+docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=2.0 --tag perteghella/hello-shell:2.0 --push .
 ```

@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -29,13 +28,12 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Serving request: %s", r.URL.Path)
 	host, _ := os.Hostname()
 	fmt.Fprintf(w, "Hello, world!\n")
-	fmt.Fprintf(w, "Version: 1.0\n")
+	fmt.Fprintf(w, "Version: %s\n", os.Getenv("APP_VERSION"))
 	fmt.Fprintf(w, "Hostname: %s\n\n", host)
 	for name, headers := range r.Header {
-        for _, h := range headers {
-            fmt.Fprintf(w, "%v: %v\n", name, h)
-        }
-    }
+		for _, h := range headers {
+			fmt.Fprintf(w, "%v: %v\n", name, h)
+		}
+	}
 	fmt.Fprintf(w, "\nI also have a shell, attach using /bin/sh \n")
 }
-
