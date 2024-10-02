@@ -144,7 +144,9 @@ As reference you can use also this TAGs for the image from Docker Hub, sorted by
 - perteghella/hello-shell:1.0-alpine
 - perteghella/hello-shell:1.0-debian
 - perteghella/hello-shell:1.0-ubuntu
+- perteghella/hello-shell:1.0-rh9
 
+THe images are built with this commands
 
 ```shell
 docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1.0-scratch -f Dockerfile-scratch --tag perteghella/hello-shell:1.0-scratch --push .
