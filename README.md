@@ -2,7 +2,7 @@
 
 Sample "Hello world" web server written in GO and shell packed as image using [Alpine linux](https://www.alpinelinux.org/) as base image.  
 
-There are also image based on Ubuntu, Debian, Busybox and Scratch to understand that *size matters*.
+There are also images based on Ubuntu, Debian, Busybox and Scratch to understand that *size matters*.
 
 - golang:1.23.1 [https://hub.docker.com/_/golang](https://hub.docker.com/_/golang)
 - alpine:3.20.3 [https://hub.docker.com/_/alpine](https://hub.docker.com/_/alpine)
@@ -16,10 +16,6 @@ This application is available as [OCI images](https://opencontainers.org/) based
 
 - perteghella/hello-shell:1.0 
 - perteghella/hello-shell:2.0 
-
-There are also images based on different base image:
-
-- 
 
 The images are based on [sample hello-app](https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/hello-app)
 
