@@ -1,16 +1,28 @@
 # Information
 
-Sample "Hello world" containerized web server written in GO and the tools of alpine:
+Sample "Hello world" web server written in GO and shell packed as image using [Alpine linux](https://www.alpinelinux.org/) as base image.  
+
+There are also image based on Ubuntu, Debian, Busybox and Scratch to understand that *size matters*.
 
 - golang:1.23.1 [https://hub.docker.com/_/golang](https://hub.docker.com/_/golang)
-- alpine 3.20.3 [https://hub.docker.com/_/alpine](https://hub.docker.com/_/alpine)
+- alpine:3.20.3 [https://hub.docker.com/_/alpine](https://hub.docker.com/_/alpine)
+- busybox:1.37.0 [https://hub.docker.com/_/busybox](https://hub.docker.com/_/busybox)
+- debian:bookworm 12.7 [https://hub.docker.com/_/debian](https://hub.docker.com/_/debian)
+- ubuntu:24.04 [https://hub.docker.com/_/ubuntu](https://hub.docker.com/_/ubuntu)
 
-This application is available as two [OCI images](https://opencontainers.org/) on [Docker Hub](https://hub.docker.com/r/perteghella/hello-shell), which respond to requests with different version numbers:
+# Versions
+
+This application is available as [OCI images](https://opencontainers.org/) based on Alpine on [Docker Hub](https://hub.docker.com/r/perteghella/hello-shell), which respond to requests with different version numbers:
 
 - perteghella/hello-shell:1.0 
 - perteghella/hello-shell:2.0 
 
-The images are based on https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/hello-app
+There are also images based on different base image:
+
+- 
+
+The images are based on [sample hello-app](https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/hello-app)
+
 
 # Key features
 
@@ -83,7 +95,62 @@ Source on Github [https://github.com/Perteghella/hello-shell](https://github.com
 
 # Build the image
 
+Build and push the images based on Alpine to Docker hub
+
 ```shell
 docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1.0 --tag perteghella/hello-shell:1.0 --push .
 docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=2.0 --tag perteghella/hello-shell:2.0 --push .
+```
+
+# Build using different base image
+
+Using different Dockerfiles we build and save the image locally
+
+```shell
+docker buildx build --build-arg APP_VERSION=1.0 -f Dockerfile --tag perteghella/hello-shell:1.0  --load .
+docker buildx build --build-arg APP_VERSION=1.0-busybox -f Dockerfile-busybox --tag perteghella/hello-shell:1.0-busybox  --load .
+docker buildx build --build-arg APP_VERSION=1.0-scratch -f Dockerfile-scratch --tag perteghella/hello-shell:1.0-scratch  --load .
+docker buildx build --build-arg APP_VERSION=1.0-debian -f Dockerfile-debian --tag perteghella/hello-shell:1.0-debian  --load .
+docker buildx build --build-arg APP_VERSION=1.0-ubuntu -f Dockerfile-ubuntu --tag perteghella/hello-shell:1.0-ubuntu  --load .
+```
+
+Get the images sizes
+
+```shell
+docker image ls 
+```
+
+Look the size of the images based on alpine, busybox and scratch + a shell 
+
+
+```shell
+REPOSITORY                    TAG                IMAGE ID       CREATED              SIZE
+busybox                       1.37.0             63cd0d5fb10d   5 days ago           4.04MB
+alpine                        3.20.3             c157a85ed455   3 weeks ago          8.83MB
+ubuntu                        24.04              c22ec0081bf1   2 weeks ago          101MB
+debian                        bookworm           a2a098df5635   5 days ago           139MB
+perteghella/hello-shell       1.0-scratch        dcd6ba149a7d   1 minutes ago        9.45MB
+perteghella/hello-shell       1.0-busybox        f941dd6ac2cf   1 minutes ago        11.3MB
+perteghella/hello-shell       1.0                1df31cf51d68   1 minutes ago        16MB
+perteghella/hello-shell       1.0-ubuntu         1c2a0f395005   7 seconds ago        108MB
+perteghella/hello-shell       1.0-debian         d2309d0c3760   51 seconds ago       146MB
+```
+
+#  Build and push the images based on Scratch, Busybox, Ubuntu and Debian
+
+As reference you can use also this TAGs for the image from Docker Hub, sorted by image size.
+
+- perteghella/hello-shell:1.0-scratch
+- perteghella/hello-shell:1.0-busybox
+- perteghella/hello-shell:1.0-alpine
+- perteghella/hello-shell:1.0-debian
+- perteghella/hello-shell:1.0-ubuntu
+
+
+```shell
+docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1.0-scratch -f Dockerfile-scratch --tag perteghella/hello-shell:1.0-scratch --push .
+docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1.0-busybox -f Dockerfile-busybox --tag perteghella/hello-shell:1.0-busybox --push .
+docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1.0-busybox -f Dockerfile --tag perteghella/hello-shell:1.0-alpine --push .
+docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1.0-debian -f Dockerfile-debian --tag perteghella/hello-shell:1.0-debian --push .
+docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1.0-ubuntu -f Dockerfile-ubuntu --tag perteghella/hello-shell:1.0-ubuntu --push .
 ```
