@@ -9,6 +9,7 @@ There are also images based on Ubuntu, Debian, Busybox and Scratch to understand
 - busybox:1.37.0 [https://hub.docker.com/_/busybox](https://hub.docker.com/_/busybox)
 - debian:bookworm 12.7 [https://hub.docker.com/_/debian](https://hub.docker.com/_/debian)
 - ubuntu:24.04 [https://hub.docker.com/_/ubuntu](https://hub.docker.com/_/ubuntu)
+- redhat/ubi9:9.4 [https://hub.docker.com/r/redhat/ubi9/](https://hub.docker.com/r/redhat/ubi9/)
 
 ## Versions
 
@@ -103,9 +104,9 @@ docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=2
 Using different Dockerfiles we build and save the image locally
 
 ```shell
-docker buildx build --build-arg APP_VERSION=1.0 -f Dockerfile --tag perteghella/hello-shell:1.0  --load .
-docker buildx build --build-arg APP_VERSION=1.0-busybox -f Dockerfile-busybox --tag perteghella/hello-shell:1.0-busybox  --load .
 docker buildx build --build-arg APP_VERSION=1.0-scratch -f Dockerfile-scratch --tag perteghella/hello-shell:1.0-scratch  --load .
+docker buildx build --build-arg APP_VERSION=1.0-busybox -f Dockerfile-busybox --tag perteghella/hello-shell:1.0-busybox  --load .
+docker buildx build --build-arg APP_VERSION=1.0-alpine -f Dockerfile --tag perteghella/hello-shell:1.0-alpine  --load .
 docker buildx build --build-arg APP_VERSION=1.0-debian -f Dockerfile-debian --tag perteghella/hello-shell:1.0-debian  --load .
 docker buildx build --build-arg APP_VERSION=1.0-ubuntu -f Dockerfile-ubuntu --tag perteghella/hello-shell:1.0-ubuntu  --load .
 ```
@@ -125,11 +126,13 @@ busybox                       1.37.0             63cd0d5fb10d   5 days ago      
 alpine                        3.20.3             c157a85ed455   3 weeks ago          8.83MB
 ubuntu                        24.04              c22ec0081bf1   2 weeks ago          101MB
 debian                        bookworm           a2a098df5635   5 days ago           139MB
+redhat/ubi9                   9.4                34c69b3786d8   13 days ago          231MB
 perteghella/hello-shell       1.0-scratch        dcd6ba149a7d   1 minutes ago        9.45MB
 perteghella/hello-shell       1.0-busybox        f941dd6ac2cf   1 minutes ago        11.3MB
-perteghella/hello-shell       1.0                1df31cf51d68   1 minutes ago        16MB
+perteghella/hello-shell       1.0-alpine         1df31cf51d68   1 minutes ago        16MB
 perteghella/hello-shell       1.0-ubuntu         1c2a0f395005   7 seconds ago        108MB
 perteghella/hello-shell       1.0-debian         d2309d0c3760   51 seconds ago       146MB
+perteghella/hello-shell       1.0-rh9            d9565b5ac8b8   10 seconds ago       238MB
 ```
 
 ##  Build and push the images based on Scratch, Busybox, Ubuntu and Debian
@@ -149,4 +152,5 @@ docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1
 docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1.0-busybox -f Dockerfile --tag perteghella/hello-shell:1.0-alpine --push .
 docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1.0-debian -f Dockerfile-debian --tag perteghella/hello-shell:1.0-debian --push .
 docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1.0-ubuntu -f Dockerfile-ubuntu --tag perteghella/hello-shell:1.0-ubuntu --push .
+docker buildx build --platform linux/amd64,linux/arm64 --build-arg APP_VERSION=1.0-rh9 -f Dockerfile-rh9 --tag perteghella/hello-shell:1.0-rh9 --push .
 ```
