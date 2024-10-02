@@ -27,7 +27,7 @@ func main() {
 func hello(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Serving request: %s", r.URL.Path)
 	host, _ := os.Hostname()
-	fmt.Fprintf(w, "Hello, world!\n")
+	fmt.Fprintf(w, "Hello, world!\n\n")
 	fmt.Fprintf(w, "Version: %s\n", os.Getenv("APP_VERSION"))
 	fmt.Fprintf(w, "Hostname: %s\n\n", host)
 	for name, headers := range r.Header {
