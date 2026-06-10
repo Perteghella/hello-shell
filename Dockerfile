@@ -10,7 +10,7 @@ ENV APP_VERSION=${APP_VERSION}
 RUN CGO_ENABLED=0 GOOS=linux go build -o /hello-app
 
 # Second stage to run the application in a specific image
-FROM alpine:3.23
+FROM alpine:3.24
 WORKDIR /
 COPY --from=builder /hello-app /hello-app
 ENV PORT=8080
